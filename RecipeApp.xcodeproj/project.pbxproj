@@ -3,27 +3,49 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D8CE513C96FCD82F83917F20 /* Pods_RecipeApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 944C9FF7F479AAE631C2E76B /* Pods_RecipeApp.framework */; };
 		E455E98D24F9A4D00057AC78 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E455E98C24F9A4D00057AC78 /* AppDelegate.swift */; };
 		E455E98F24F9A4D00057AC78 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E455E98E24F9A4D00057AC78 /* SceneDelegate.swift */; };
 		E455E99124F9A4D00057AC78 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E455E99024F9A4D00057AC78 /* ViewController.swift */; };
 		E455E99424F9A4D00057AC78 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E455E99224F9A4D00057AC78 /* Main.storyboard */; };
-		E455E99624F9A4D40057AC78 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E455E99524F9A4D40057AC78 /* Assets.xcassets */; };
 		E455E99924F9A4D40057AC78 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E455E99724F9A4D40057AC78 /* LaunchScreen.storyboard */; };
+		E455E9A124F9A7440057AC78 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E455E9A024F9A7430057AC78 /* GoogleService-Info.plist */; };
+		E455E9A324F9A9740057AC78 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = E455E9A224F9A9740057AC78 /* Recipe.swift */; };
+		E455E9A524F9AD340057AC78 /* RecipesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E455E9A424F9AD340057AC78 /* RecipesModel.swift */; };
+		E455E9A724F9AD880057AC78 /* RecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E455E9A624F9AD880057AC78 /* RecipeViewController.swift */; };
+		E455E9A924FEE0180057AC78 /* AddRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E455E9A824FEE0180057AC78 /* AddRecipeViewController.swift */; };
+		E4E0448825002F4A0098E213 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4E0448725002F4A0098E213 /* Assets.xcassets */; };
+		E4E0448C2502E6DF0098E213 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E0448B2502E6DF0098E213 /* Photo.swift */; };
+		E4E0448E2502E7540098E213 /* PhotoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E0448D2502E7540098E213 /* PhotoService.swift */; };
+		E4E044902502F6690098E213 /* UploadPhotoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E0448F2502F6690098E213 /* UploadPhotoButton.swift */; };
+		E4E04495250897760098E213 /* EntryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E04494250897760098E213 /* EntryCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		93EC36868A8B4E39E8DA97CA /* Pods-RecipeApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecipeApp.debug.xcconfig"; path = "Target Support Files/Pods-RecipeApp/Pods-RecipeApp.debug.xcconfig"; sourceTree = "<group>"; };
+		944C9FF7F479AAE631C2E76B /* Pods_RecipeApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RecipeApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2447AD6CCF4A6BDF55CC5C9 /* Pods-RecipeApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecipeApp.release.xcconfig"; path = "Target Support Files/Pods-RecipeApp/Pods-RecipeApp.release.xcconfig"; sourceTree = "<group>"; };
 		E455E98924F9A4D00057AC78 /* RecipeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecipeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E455E98C24F9A4D00057AC78 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E455E98E24F9A4D00057AC78 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		E455E99024F9A4D00057AC78 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E455E99324F9A4D00057AC78 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		E455E99524F9A4D40057AC78 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E455E99824F9A4D40057AC78 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E455E99A24F9A4D40057AC78 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E455E9A024F9A7430057AC78 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E455E9A224F9A9740057AC78 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
+		E455E9A424F9AD340057AC78 /* RecipesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesModel.swift; sourceTree = "<group>"; };
+		E455E9A624F9AD880057AC78 /* RecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewController.swift; sourceTree = "<group>"; };
+		E455E9A824FEE0180057AC78 /* AddRecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecipeViewController.swift; sourceTree = "<group>"; };
+		E4E0448725002F4A0098E213 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E4E0448B2502E6DF0098E213 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		E4E0448D2502E7540098E213 /* PhotoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoService.swift; sourceTree = "<group>"; };
+		E4E0448F2502F6690098E213 /* UploadPhotoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPhotoButton.swift; sourceTree = "<group>"; };
+		E4E04494250897760098E213 /* EntryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +53,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8CE513C96FCD82F83917F20 /* Pods_RecipeApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B80FDF1BBB66F30A1869141 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				93EC36868A8B4E39E8DA97CA /* Pods-RecipeApp.debug.xcconfig */,
+				E2447AD6CCF4A6BDF55CC5C9 /* Pods-RecipeApp.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		E455E98024F9A4D00057AC78 = {
 			isa = PBXGroup;
 			children = (
 				E455E98B24F9A4D00057AC78 /* RecipeApp */,
 				E455E98A24F9A4D00057AC78 /* Products */,
+				0B80FDF1BBB66F30A1869141 /* Pods */,
+				FBED53E0F969FB2B67C613FC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,13 +92,38 @@
 			children = (
 				E455E98C24F9A4D00057AC78 /* AppDelegate.swift */,
 				E455E98E24F9A4D00057AC78 /* SceneDelegate.swift */,
-				E455E99024F9A4D00057AC78 /* ViewController.swift */,
+				E4E0449325082A6E0098E213 /* ViewControllers */,
+				E455E9A224F9A9740057AC78 /* Recipe.swift */,
+				E455E9A424F9AD340057AC78 /* RecipesModel.swift */,
 				E455E99224F9A4D00057AC78 /* Main.storyboard */,
-				E455E99524F9A4D40057AC78 /* Assets.xcassets */,
 				E455E99724F9A4D40057AC78 /* LaunchScreen.storyboard */,
 				E455E99A24F9A4D40057AC78 /* Info.plist */,
+				E4E0448725002F4A0098E213 /* Assets.xcassets */,
+				E455E9A024F9A7430057AC78 /* GoogleService-Info.plist */,
+				E4E0448B2502E6DF0098E213 /* Photo.swift */,
+				E4E0448D2502E7540098E213 /* PhotoService.swift */,
+				E4E0448F2502F6690098E213 /* UploadPhotoButton.swift */,
+				E4E04494250897760098E213 /* EntryCell.swift */,
 			);
 			path = RecipeApp;
+			sourceTree = "<group>";
+		};
+		E4E0449325082A6E0098E213 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				E455E99024F9A4D00057AC78 /* ViewController.swift */,
+				E455E9A824FEE0180057AC78 /* AddRecipeViewController.swift */,
+				E455E9A624F9AD880057AC78 /* RecipeViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		FBED53E0F969FB2B67C613FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				944C9FF7F479AAE631C2E76B /* Pods_RecipeApp.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +133,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E455E99D24F9A4D40057AC78 /* Build configuration list for PBXNativeTarget "RecipeApp" */;
 			buildPhases = (
+				8C037C0F74DAB72CD078F95A /* [CP] Check Pods Manifest.lock */,
 				E455E98524F9A4D00057AC78 /* Sources */,
 				E455E98624F9A4D00057AC78 /* Frameworks */,
 				E455E98724F9A4D00057AC78 /* Resources */,
+				BC3B2E79C83737CC972B57E3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -126,21 +187,72 @@
 			buildActionMask = 2147483647;
 			files = (
 				E455E99924F9A4D40057AC78 /* LaunchScreen.storyboard in Resources */,
-				E455E99624F9A4D40057AC78 /* Assets.xcassets in Resources */,
 				E455E99424F9A4D00057AC78 /* Main.storyboard in Resources */,
+				E4E0448825002F4A0098E213 /* Assets.xcassets in Resources */,
+				E455E9A124F9A7440057AC78 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8C037C0F74DAB72CD078F95A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RecipeApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BC3B2E79C83737CC972B57E3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RecipeApp/Pods-RecipeApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RecipeApp/Pods-RecipeApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RecipeApp/Pods-RecipeApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E455E98524F9A4D00057AC78 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4E0448C2502E6DF0098E213 /* Photo.swift in Sources */,
 				E455E99124F9A4D00057AC78 /* ViewController.swift in Sources */,
+				E4E0448E2502E7540098E213 /* PhotoService.swift in Sources */,
+				E455E9A924FEE0180057AC78 /* AddRecipeViewController.swift in Sources */,
 				E455E98D24F9A4D00057AC78 /* AppDelegate.swift in Sources */,
+				E455E9A724F9AD880057AC78 /* RecipeViewController.swift in Sources */,
+				E455E9A524F9AD340057AC78 /* RecipesModel.swift in Sources */,
+				E4E044902502F6690098E213 /* UploadPhotoButton.swift in Sources */,
+				E4E04495250897760098E213 /* EntryCell.swift in Sources */,
 				E455E98F24F9A4D00057AC78 /* SceneDelegate.swift in Sources */,
+				E455E9A324F9A9740057AC78 /* Recipe.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,6 +394,7 @@
 		};
 		E455E99E24F9A4D40057AC78 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 93EC36868A8B4E39E8DA97CA /* Pods-RecipeApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -300,6 +413,7 @@
 		};
 		E455E99F24F9A4D40057AC78 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E2447AD6CCF4A6BDF55CC5C9 /* Pods-RecipeApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
