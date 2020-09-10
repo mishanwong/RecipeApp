@@ -22,7 +22,10 @@
 		E4E0448C2502E6DF0098E213 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E0448B2502E6DF0098E213 /* Photo.swift */; };
 		E4E0448E2502E7540098E213 /* PhotoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E0448D2502E7540098E213 /* PhotoService.swift */; };
 		E4E044902502F6690098E213 /* UploadPhotoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E0448F2502F6690098E213 /* UploadPhotoButton.swift */; };
-		E4E04495250897760098E213 /* EntryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E04494250897760098E213 /* EntryCell.swift */; };
+		E4E0449B250984D70098E213 /* EntryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E0449A250984D70098E213 /* EntryCell.swift */; };
+		E4E0449F250997150098E213 /* AddIngredientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E0449E250997150098E213 /* AddIngredientsViewController.swift */; };
+		E4E044A125099EA10098E213 /* AddSeasoningsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E044A025099EA10098E213 /* AddSeasoningsViewController.swift */; };
+		E4E044A325099EB30098E213 /* AddInstructionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E044A225099EB30098E213 /* AddInstructionsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,7 +48,10 @@
 		E4E0448B2502E6DF0098E213 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		E4E0448D2502E7540098E213 /* PhotoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoService.swift; sourceTree = "<group>"; };
 		E4E0448F2502F6690098E213 /* UploadPhotoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPhotoButton.swift; sourceTree = "<group>"; };
-		E4E04494250897760098E213 /* EntryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryCell.swift; sourceTree = "<group>"; };
+		E4E0449A250984D70098E213 /* EntryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryCell.swift; sourceTree = "<group>"; };
+		E4E0449E250997150098E213 /* AddIngredientsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIngredientsViewController.swift; sourceTree = "<group>"; };
+		E4E044A025099EA10098E213 /* AddSeasoningsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSeasoningsViewController.swift; sourceTree = "<group>"; };
+		E4E044A225099EB30098E213 /* AddInstructionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInstructionsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,20 +96,16 @@
 		E455E98B24F9A4D00057AC78 /* RecipeApp */ = {
 			isa = PBXGroup;
 			children = (
+				E4E04499250984AA0098E213 /* Cells */,
+				E4E04498250984580098E213 /* Models */,
 				E455E98C24F9A4D00057AC78 /* AppDelegate.swift */,
 				E455E98E24F9A4D00057AC78 /* SceneDelegate.swift */,
 				E4E0449325082A6E0098E213 /* ViewControllers */,
-				E455E9A224F9A9740057AC78 /* Recipe.swift */,
-				E455E9A424F9AD340057AC78 /* RecipesModel.swift */,
 				E455E99224F9A4D00057AC78 /* Main.storyboard */,
 				E455E99724F9A4D40057AC78 /* LaunchScreen.storyboard */,
 				E455E99A24F9A4D40057AC78 /* Info.plist */,
 				E4E0448725002F4A0098E213 /* Assets.xcassets */,
 				E455E9A024F9A7430057AC78 /* GoogleService-Info.plist */,
-				E4E0448B2502E6DF0098E213 /* Photo.swift */,
-				E4E0448D2502E7540098E213 /* PhotoService.swift */,
-				E4E0448F2502F6690098E213 /* UploadPhotoButton.swift */,
-				E4E04494250897760098E213 /* EntryCell.swift */,
 			);
 			path = RecipeApp;
 			sourceTree = "<group>";
@@ -114,8 +116,31 @@
 				E455E99024F9A4D00057AC78 /* ViewController.swift */,
 				E455E9A824FEE0180057AC78 /* AddRecipeViewController.swift */,
 				E455E9A624F9AD880057AC78 /* RecipeViewController.swift */,
+				E4E0449E250997150098E213 /* AddIngredientsViewController.swift */,
+				E4E044A025099EA10098E213 /* AddSeasoningsViewController.swift */,
+				E4E044A225099EB30098E213 /* AddInstructionsViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		E4E04498250984580098E213 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E455E9A224F9A9740057AC78 /* Recipe.swift */,
+				E4E0448D2502E7540098E213 /* PhotoService.swift */,
+				E4E0448B2502E6DF0098E213 /* Photo.swift */,
+				E455E9A424F9AD340057AC78 /* RecipesModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E4E04499250984AA0098E213 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				E4E0448F2502F6690098E213 /* UploadPhotoButton.swift */,
+				E4E0449A250984D70098E213 /* EntryCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		FBED53E0F969FB2B67C613FC /* Frameworks */ = {
@@ -249,10 +274,13 @@
 				E455E98D24F9A4D00057AC78 /* AppDelegate.swift in Sources */,
 				E455E9A724F9AD880057AC78 /* RecipeViewController.swift in Sources */,
 				E455E9A524F9AD340057AC78 /* RecipesModel.swift in Sources */,
+				E4E044A125099EA10098E213 /* AddSeasoningsViewController.swift in Sources */,
+				E4E0449F250997150098E213 /* AddIngredientsViewController.swift in Sources */,
 				E4E044902502F6690098E213 /* UploadPhotoButton.swift in Sources */,
-				E4E04495250897760098E213 /* EntryCell.swift in Sources */,
+				E4E0449B250984D70098E213 /* EntryCell.swift in Sources */,
 				E455E98F24F9A4D00057AC78 /* SceneDelegate.swift in Sources */,
 				E455E9A324F9A9740057AC78 /* Recipe.swift in Sources */,
+				E4E044A325099EB30098E213 /* AddInstructionsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

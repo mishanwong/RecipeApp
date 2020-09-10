@@ -12,11 +12,7 @@ import Firebase
 class AddRecipeViewController: UIViewController {
     
     @IBOutlet weak var dishNameTextField: UITextField!
-    @IBOutlet weak var addSeasoningsTextField: UITextField!
-    
-    @IBOutlet weak var ingredientsTableView: UITableView!
-    @IBOutlet weak var seasoningsTableView: UITableView!
-    @IBOutlet weak var instructionsTableView: UITableView!
+    @IBOutlet weak var tableView: UITableView!
     
     var recipe:Recipe?
     
@@ -27,12 +23,26 @@ class AddRecipeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Add New Recipe"
-        seasoningsTableView.tableFooterView = UIView(frame: CGRect.zero)
-        seasoningsTableView.delegate = self
-        seasoningsTableView.dataSource = self
-
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        
     }
     
+    
+    
+    
+    @IBAction func addDishNameButtonTapped(_ sender: Any) {
+        
+        //Tapping this button will create a new document in the recipes collection in Firestore
+        
+        let db = Firestore.firestore()
+        
+        let newRecipe = db.collection("recipes").document()
+        
+        newRecipe.setData(["recipeId":newRecipe.documentID, "dishName":dishNameTextField.text!])
+        
+    }
     
     @IBAction func photoButtonTapped(_ sender: Any) {
         
@@ -73,39 +83,15 @@ class AddRecipeViewController: UIViewController {
         //Display the action sheet
         present(actionSheet, animated: true)
         
-    }
-    
-    @IBAction func addSeasoningsTapped(_ sender: Any) {
-        let trimmed = addSeasoningsTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
-        if trimmed != "" {
-            insertNewSeasoningsRow()
-        }
         
     }
     
-    func insertNewSeasoningsRow() {
-        
-        seasonings.append(addSeasoningsTextField.text!)
-        
-        //let rowNum = max(0, seasonings.count - 1)
-        let indexPath = IndexPath(row: seasonings.count - 1, section: 0)
-    
-        seasoningsTableView.insertRows(at: [indexPath], with: .automatic)
-        
-        addSeasoningsTextField.text = ""
-        view.endEditing(true)
-    }
-    
+   
     
     @IBAction func cancelTapped(_ sender: Any) {
     }
     
     @IBAction func saveTapped(_ sender: Any) {
-        
-        //Save text entered into dishNameTextField ingredientsTextView, seasoningsTextView and instructionsTextView to Firebase
-        
-        //Create the recipe
-        //let r = Recipe(recipeId: UUID().uuidString, dishName: dishNameTextField.text ?? "", ingredients: (ingredientsTextView.text as! Array), seasonings: seasoningsTextView.text, instructions: instructionsTextView.text, url: "")
     }
     
     func showImagePickerController(mode: UIImagePickerController.SourceType) {
@@ -117,10 +103,6 @@ class AddRecipeViewController: UIViewController {
         //Present the image picker
         present(imagePicker, animated: true)
     }
-    
-    
-    
-
 }
 
 extension AddRecipeViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -152,47 +134,68 @@ extension AddRecipeViewController: UIImagePickerControllerDelegate, UINavigation
 
 extension AddRecipeViewController: UITableViewDelegate, UITableViewDataSource {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch tableView {
-            
-        case ingredientsTableView:
-            return ingredients.count
-            
-        case seasoningsTableView:
-            return seasonings.count
-            
-        case instructionsTableView:
-            return instructions.count
-            
-        default:
-            return 0
-        }
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 3
     }
+    
+    //This works
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        var str:String = ""
+        
+        if section == 0 {
+            str = "Ingredients"
+        }
+        if section == 1 {
+            str = "Seasonings"
+        }
+        if section == 2 {
+            str = "Instructions"
+        }
+        return str
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        var num:Int = 0
+        
+        if section == 0 {
+            if ingredients.count == 0 {
+                num = 3
+            }
+            else {
+                num = ingredients.count
+            }
+        }
+        
+        if section == 1 {
+            if seasonings.count == 0 {
+                num = 3
+            }
+            else {
+                num = seasonings.count
+            }
+            
+        }
+        
+        if section == 2 {
+            if instructions.count == 0 {
+                num = 3
+            }
+            else {
+                num = instructions.count
+            }
+        }
+        return num
+    } // End func
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        switch tableView {
-            
-        case ingredientsTableView:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientsCell", for: indexPath)
-            return cell
-            
-        case seasoningsTableView:
-            let seasoningsEntry = seasonings[indexPath.row]
-            let cell = tableView.dequeueReusableCell(withIdentifier: "SeasoningsCell", for: indexPath) as! EntryCell
-            cell.seasoningsLabel.text = seasoningsEntry
-            return cell
-    
-        case instructionsTableView:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "InstructionsCell", for: indexPath)
-            return cell
-            
-        default:
-            return UITableViewCell()
-        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "EntryCell", for: indexPath) as! EntryCell
         
-    }
-    
-    
-    
-}
+        //Configure the cell
+        //cell.entryTextLabel.text = ingredients[indexPath.row]
+        return cell
+            
+    } // End func
+     
+} // End extension
