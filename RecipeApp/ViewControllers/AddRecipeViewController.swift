@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Firebase
+import FirebaseFirestore
 
 class AddRecipeViewController: UIViewController {
     
@@ -20,31 +20,63 @@ class AddRecipeViewController: UIViewController {
     var seasonings = [String]()
     var instructions = [String]()
     
+    var sections = [Section(name: "Ingredients", items: []),
+                    Section(name: "Seasonings", items: []),
+                    Section(name: "Instructions", items: [])]
+    
+    
+    
+    // MARK: - View Did Load
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Add New Recipe"
         
         tableView.delegate = self
         tableView.dataSource = self
-        
+                
     }
     
+    // MARK: - Prepare for storyboard segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == Constants.addRecipeToAddIngredients {
+            
+            let addIngredientsVC = segue.destination as! AddIngredientsViewController
+            addIngredientsVC.ingredients = ingredients
+            addIngredientsVC.delegate = self
+        }
+        
+        if segue.identifier == Constants.addRecipeToAddSeasonings {
+            
+            let addSeasoningsVC = segue.destination as! AddSeasoningsViewController
+            addSeasoningsVC.seasonings = seasonings
+            addSeasoningsVC.delegate = self
+        }
+        
+        if segue.identifier == Constants.addRecipeToAddInstructions {
+            
+            let addInstructionsVC = segue.destination as! AddInstructionsViewController
+            addInstructionsVC.instructions = instructions
+            addInstructionsVC.delegate = self
+        }
+    }
     
-    
+    // MARK: - IB Action functions
     
     @IBAction func addDishNameButtonTapped(_ sender: Any) {
         
-        //Tapping this button will create a new document in the recipes collection in Firestore
-        
-        let db = Firestore.firestore()
-        
-        let newRecipe = db.collection("recipes").document()
-        
-        newRecipe.setData(["recipeId":newRecipe.documentID, "dishName":dishNameTextField.text!])
-        
+        //Consider removing this and add in Recipes Model
+                
+                //Tapping this button will create a new document in the recipes collection in Firestore
+                
+        //        let db = Firestore.firestore()
+        //
+        //        let newRecipe = db.collection("recipes").document()
+        //
+        //        newRecipe.setData(["recipeId":newRecipe.documentID, "dishName":dishNameTextField.text!])
     }
     
-    @IBAction func photoButtonTapped(_ sender: Any) {
+    @IBAction func photoTapped(_ sender: Any) {
         
         //Create the action sheet
         let actionSheet = UIAlertController(title: "Add a Photo", message: "Select a source:", preferredStyle: .actionSheet)
@@ -83,16 +115,65 @@ class AddRecipeViewController: UIViewController {
         //Display the action sheet
         present(actionSheet, animated: true)
         
-        
     }
-    
-   
     
     @IBAction func cancelTapped(_ sender: Any) {
     }
     
+    
     @IBAction func saveTapped(_ sender: Any) {
+        
+        let checkFields = areAllFieldsEntered()
+        if checkFields {
+            //Write to database
+            //Get a reference to the database
+            let db = Firestore.firestore()
+            
+            //Create a new document
+            let newRecipe = db.collection("recipes").document()
+            
+            //Save data to database
+            newRecipe.setData(["recipeId":newRecipe.documentID,
+                               "dishName": dishNameTextField.text ?? "",
+                               "ingredients": ingredients,
+                               "seasonings": seasonings,
+                               "instructions": instructions])
+            
+            //Return to Add Recipe View Controller
+            navigationController?.popViewController(animated: true)
+            
+        } // End if checkFields()
+        
+        else {
+            return
+        }
+    
+    } // End saveTapped
+    
+    func areAllFieldsEntered() -> Bool {
+        //This function checks if all fields (Dish name, ingredients, seasonings and instructions) are filled.
+        //Return true if all fields are filled
+        
+        if dishNameTextField.text!.isEmpty || ingredients.isEmpty || seasonings.isEmpty || instructions.isEmpty {
+            showIncompleteAlert()
+            return false
+        }
+        else {
+            return true
+        }
+        
+        
     }
+    
+    func showIncompleteAlert() {
+        
+        let alert = UIAlertController(title: "Incomplete Form", message: "Please fill out all fields", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true)
+        
+        
+    }
+    
     
     func showImagePickerController(mode: UIImagePickerController.SourceType) {
         
@@ -105,6 +186,9 @@ class AddRecipeViewController: UIViewController {
     }
 }
 
+
+
+// MARK: - Image picker protocol functions
 extension AddRecipeViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -132,70 +216,97 @@ extension AddRecipeViewController: UIImagePickerControllerDelegate, UINavigation
     }
 }
 
+// MARK: - UI Table View protocol functions
 extension AddRecipeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
-    }
+        return sections.count
+    } // End numberOfSections
     
-    //This works
+    //Setting the header for the 3 sections
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        var str:String = ""
-        
-        if section == 0 {
-            str = "Ingredients"
-        }
-        if section == 1 {
-            str = "Seasonings"
-        }
-        if section == 2 {
-            str = "Instructions"
-        }
-        return str
-    }
+        return sections[section].name
+    } // End titleForHeaderInSection
     
+    //Setting the number of rows in the table view
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        var num:Int = 0
+        var items = sections[section].items
         
         if section == 0 {
-            if ingredients.count == 0 {
-                num = 3
-            }
-            else {
-                num = ingredients.count
-            }
+            items = ingredients
         }
         
         if section == 1 {
-            if seasonings.count == 0 {
-                num = 3
-            }
-            else {
-                num = seasonings.count
-            }
-            
+            items = seasonings
         }
         
         if section == 2 {
-            if instructions.count == 0 {
-                num = 3
-            }
-            else {
-                num = instructions.count
-            }
+            items = instructions
         }
-        return num
-    } // End func
+        return items!.count
+        
+    } // End numberOfRowInSection
     
+    //Setting the cell for each table row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "EntryCell", for: indexPath) as! EntryCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "EntryCell")!
         
-        //Configure the cell
-        //cell.entryTextLabel.text = ingredients[indexPath.row]
+        var items = sections[indexPath.section].items
+        
+        if indexPath.section == 0 {
+            items = ingredients
+        }
+        
+        if indexPath.section == 1 {
+            items = seasonings
+        }
+        
+        if indexPath.section == 2 {
+            items = instructions
+        }
+        print(items!)
+        
+        if items!.count > 0 {
+            let item = items![indexPath.row]
+            cell.textLabel?.text = item
+        }
         return cell
-            
+       
     } // End func
      
 } // End extension
+
+
+//MARK: - PassData Protocol function
+extension AddRecipeViewController: PassData {
+    
+    func passDataBack(data: [String]) {
+        
+        //Append the ingredients array from previous VC to ingredients array in current VC
+        ingredients = ingredients + data
+        tableView.reloadData()
+    }
+}
+
+extension AddRecipeViewController: PassData2 {
+    
+    func passDataBack2(data: [String]) {
+        
+        seasonings = seasonings + data
+        tableView.reloadData()
+    }
+    
+}
+
+extension AddRecipeViewController: PassData3 {
+    
+    func passDataBack3(data: [String]) {
+        instructions = instructions + data
+        tableView.reloadData()
+    }
+    
+    
+}
+

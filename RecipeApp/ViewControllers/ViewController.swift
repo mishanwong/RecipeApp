@@ -40,6 +40,7 @@ class ViewController: UIViewController {
 
     }
     
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "mainToDetail" {
@@ -56,7 +57,6 @@ class ViewController: UIViewController {
             recipeViewController.recipesModel = self.recipesModel
             
         }
-        
                 
     } //End override
     
@@ -69,12 +69,9 @@ class ViewController: UIViewController {
         //performSegue(withIdentifier: "mainToAdd", sender: self)
     }
     
-    
-    
 } //End class
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return recipes.count
@@ -97,7 +94,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        //TODO: -
         
     }
 }
@@ -113,7 +110,4 @@ extension ViewController: RecipesModelProtocol {
         tableView.reloadData()
         
     }
-    
-    
-    
 }

@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Firebase
+import FirebaseFirestore
 
 //This stores all the codes to connect and query Firebase database
 
@@ -27,7 +27,8 @@ class RecipesModel {
         let db = Firestore.firestore()
         
         //Get all the recipes
-        db.collection("recipes").getDocuments { (snapshot, error) in
+        
+        db.collection("recipes").addSnapshotListener { (snapshot, error) in
             
             //Check for errors
             if error == nil && snapshot != nil {
@@ -49,12 +50,18 @@ class RecipesModel {
                 DispatchQueue.main.async {
                     self.delegate?.recipesRetrieved(recipes: recipes)
 
-                }
-                
-                
-            }
-            
-        }
+                } //End DispatchQueue
+            } // End if error
+        } // End db.collection
+    } // End func getRecipes()
+    
+    func saveRecipes() {
+        
+        //Get a reference to the database
+        //let db = Firestore.firestore()
+        
+        //Save the recipe
+        //let newRecipe = db.collection("recipes").document()
         
         
     }

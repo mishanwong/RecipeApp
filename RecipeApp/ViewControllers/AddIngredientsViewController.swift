@@ -8,18 +8,20 @@
 
 import UIKit
 
+protocol PassData {
+    func passDataBack(data: [String])
+}
+
 class AddIngredientsViewController: UIViewController {
-    
+        
     var ingredients = [String]()
-    
+    var delegate:PassData?
     
     @IBOutlet weak var addIngredientsTextField: UITextField!
-
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.title = "Add Ingredients"
         
         tableView.delegate = self
@@ -27,11 +29,19 @@ class AddIngredientsViewController: UIViewController {
 
     }
     
+    @IBAction func saveTapped(_ sender: Any) {
+        
+        //Send it back to Add Recipe View Controller
+        delegate?.passDataBack(data: ingredients)
+        dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
+        
+    }
+    
     @IBAction func addButtonTapped(_ sender: Any) {
         
         let trimmed = addIngredientsTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
         if trimmed != "" {
-            
             insertNewRow()
         }
         
@@ -45,7 +55,7 @@ class AddIngredientsViewController: UIViewController {
         let indexPath = IndexPath(row: ingredients.count - 1, section: 0)
         tableView.insertRows(at: [indexPath], with: .automatic)
         
-        //Clear out the typing text field
+        //Clear out the text field
         addIngredientsTextField.text = ""
         
         //Dismiss the keyboard
@@ -62,9 +72,9 @@ extension AddIngredientsViewController: UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "AddIngredientsCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.addIngredientsCell, for: indexPath)
         
-        //TODO: Configure cell
+        //Configure cell
         cell.textLabel?.text = ingredients[indexPath.row]
         
         return cell
