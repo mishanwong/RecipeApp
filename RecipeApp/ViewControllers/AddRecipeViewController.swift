@@ -229,6 +229,7 @@ extension AddRecipeViewController: UITableViewDelegate, UITableViewDataSource {
     } // End titleForHeaderInSection
     
     //Setting the number of rows in the table view
+    //TODO: - Refactor this code later
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         var items = sections[section].items
@@ -275,6 +276,68 @@ extension AddRecipeViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
        
     } // End func
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
+            
+            if indexPath.section == 0 {
+                ingredients.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+                tableView.reloadData()
+                
+            }
+            if indexPath.section == 1 {
+                seasonings.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+                tableView.reloadData()
+                
+            }
+            if indexPath.section == 2 {
+                instructions.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+                tableView.reloadData()
+                
+            }
+            
+            
+//            let ingredientsIndexPath = IndexPath(row: indexPath.row, section: 0)
+//            let seasoningsIndexPath = IndexPath(row: indexPath.row, section: 1)
+//            let instructionsIndexPath = IndexPath(row: indexPath.row, section: 2)
+            
+            //if indexPath.section == 0 {
+//                ingredients.remove(at: ingredientsIndexPath.row)
+//                tableView.beginUpdates()
+//                tableView.deleteRows(at: [ingredientsIndexPath], with: .automatic)
+//                tableView.endUpdates()
+        //}
+            
+//            if indexPath.section == 1 {
+//                ingredients.remove(at: seasoningsIndexPath.row)
+//                tableView.beginUpdates()
+//                tableView.deleteRows(at: [seasoningsIndexPath], with: .automatic)
+//                tableView.endUpdates()
+//
+//            }
+//
+//            if indexPath.section == 2 {
+//                ingredients.remove(at: instructionsIndexPath.row)
+//                tableView.beginUpdates()
+//                tableView.deleteRows(at: [instructionsIndexPath], with: .automatic)
+//                tableView.endUpdates()
+//
+//            }
+            
+            
+            
+            
+        } // End if editingStyle
+    } // End commit editingStyle
+    
      
 } // End extension
 
