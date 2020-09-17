@@ -11,7 +11,6 @@ import Foundation
 struct Photo {
     
     var photoId:String?
-    var dishName:String?
     var recipeId:String?
     var url:String?
     

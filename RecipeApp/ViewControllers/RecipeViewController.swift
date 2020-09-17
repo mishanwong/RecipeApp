@@ -18,6 +18,7 @@ class RecipeViewController: UIViewController {
     
     var recipe:Recipe?
     var recipesModel:RecipesModel?
+    var thisRecipeId:String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +29,6 @@ class RecipeViewController: UIViewController {
         instructionsTextView.layer.cornerRadius = 5
         
 
-                        
         if recipe != nil {
             
             title = "Recipe"
@@ -55,16 +55,110 @@ class RecipeViewController: UIViewController {
             for i in 0...(instructionsArray!.count - 1) {
                 instructionsTextView.text += "\(i+1). " + instructionsArray![i] + "\n"
                 
-            }
+            } // End let
             
-            
-            
-        }
+
+        } // End if recipe
         
 
+    } // End ViewDidLoad
+    
+
+    @IBAction func cameraTapped(_ sender: Any) {
+        
+        //Create the action sheet
+        let actionSheet = UIAlertController(title: "Add a Photo", message: "Select a source:", preferredStyle: .actionSheet)
+        
+        //Only add the Camera button if it is available
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            
+            //Create and add the Camera button
+            let cameraButton = UIAlertAction(title: "Camera", style: .default) { (action) in
+                
+                //Display the UIImagePickerController set to camera mode
+                self.showImagePickerController(mode: .camera)
+                
+            }
+            
+            //Add Camera button to action sheet
+            actionSheet.addAction(cameraButton)
+            
+        } // End if
+            
+            
+        //Only add the Photo Library button if it is available
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            
+            //Create and add the Photo Library button
+            let libraryButton = UIAlertAction(title: "Photo Library", style: .default) { (action) in
+                
+                //Display the UIImagePickerController set to library mode
+                self.showImagePickerController(mode: .photoLibrary)
+                
+            }
+            
+            //Add Photo Library button to action sheet
+            actionSheet.addAction(libraryButton)
+        } // End if
+        
+        //Create and add the Cancel button to action sheet
+        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        actionSheet.addAction(cancelButton)
+        
+        //Display the action sheet
+        present(actionSheet, animated: true)
+        
+    //Try to access recipeId here
+        //print(recipe!.recipeId as String) //This also works. Successfully retrived current recipeId
+        
+        
+        
+
+    } // End cameraTapped
+    
+    func showImagePickerController(mode: UIImagePickerController.SourceType) {
+        
+        let imagePicker = UIImagePickerController()
+        imagePicker.sourceType = mode
+        imagePicker.delegate = self
+        
+        //Present the image picker
+        present(imagePicker, animated: true)
+    } // End showImagePickerController
+    
+
+} // End class
+
+
+// MARK: - Image picker protocol functions
+extension RecipeViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        //Dismiss the image picker
+        dismiss(animated: true, completion: nil)
     }
     
-
-    
-
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        //Get a reference to the selected photo
+        let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+        
+        //Check that the selected image isn't nil
+        if let selectedImage = selectedImage {
+            
+            //Get a reference to Photoservice
+            let photoService = PhotoService()
+            
+            //Get selected recipe Id
+            let selectedRecipeId = recipe!.recipeId as String
+            
+            //Upload it
+            photoService.savePhoto(image: selectedImage, recipeId: selectedRecipeId)
+            //print(recipe!.recipeId as String) // This also works. Can retrieve recipeId
+            
+        } // End if
+        
+        //Dismiss the image picker
+        dismiss(animated: true, completion: nil)
+    } // End imagePicker Controller
 }

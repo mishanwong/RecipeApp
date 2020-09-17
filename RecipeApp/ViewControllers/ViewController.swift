@@ -51,6 +51,7 @@ class ViewController: UIViewController {
                 
                 //Set the recipe and recipesModel properties of the RecipeViewController
                 recipeViewController.recipe = recipes[tableView.indexPathForSelectedRow!.row] //this returns an integer
+                //print(recipeViewController.recipe!.recipeId as String) // Works. Can access recipeId here
             }
             
             //Pass the selected recipe to the recipeViewController

@@ -10,18 +10,10 @@ import UIKit
 
 class UploadPhotoButton: UIButton {
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
-
-    func savePhoto(image:UIImage) {
+    //func savePhoto(image:UIImage) {
         
         //Call the photo service to store the photo
-        PhotoService.savePhotoToFirebase(image: image)
-    }
+        //PhotoService.savePhotoToFirebase(image: image)
+    //}
     
 }

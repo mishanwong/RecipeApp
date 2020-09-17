@@ -24,8 +24,6 @@ class AddRecipeViewController: UIViewController {
                     Section(name: "Seasonings", items: []),
                     Section(name: "Instructions", items: [])]
     
-    
-    
     // MARK: - View Did Load
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,60 +60,6 @@ class AddRecipeViewController: UIViewController {
     }
     
     // MARK: - IB Action functions
-    
-    @IBAction func addDishNameButtonTapped(_ sender: Any) {
-        
-        //Consider removing this and add in Recipes Model
-                
-                //Tapping this button will create a new document in the recipes collection in Firestore
-                
-        //        let db = Firestore.firestore()
-        //
-        //        let newRecipe = db.collection("recipes").document()
-        //
-        //        newRecipe.setData(["recipeId":newRecipe.documentID, "dishName":dishNameTextField.text!])
-    }
-    
-    @IBAction func photoTapped(_ sender: Any) {
-        
-        //Create the action sheet
-        let actionSheet = UIAlertController(title: "Add a Photo", message: "Select a source:", preferredStyle: .actionSheet)
-        
-        //Only add the Camera button if it is available
-        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            
-            //Create and add the Camera button
-            let cameraButton = UIAlertAction(title: "Camera", style: .default) { (action) in
-                
-                //Display the UIImagePickerController set to camera mode
-                self.showImagePickerController(mode: .camera)
-                
-            }
-            actionSheet.addAction(cameraButton)
-            
-        }
-        
-        //Only add the Photo Library button if it is available
-        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-            
-            //Create and add the Photo Library button
-            let libraryButton = UIAlertAction(title: "Photo Library", style: .default) { (action) in
-                
-                //Display the UIImagePickerController set to library mode
-                self.showImagePickerController(mode: .photoLibrary)
-                
-            }
-            actionSheet.addAction(libraryButton)
-        }
-        
-        //Create and add the Cancel button
-        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        actionSheet.addAction(cancelButton)
-        
-        //Display the action sheet
-        present(actionSheet, animated: true)
-        
-    }
     
     @IBAction func cancelTapped(_ sender: Any) {
     }
@@ -171,49 +115,8 @@ class AddRecipeViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(alert, animated: true)
         
-        
-    }
-    
-    
-    func showImagePickerController(mode: UIImagePickerController.SourceType) {
-        
-        let imagePicker = UIImagePickerController()
-        imagePicker.sourceType = mode
-        imagePicker.delegate = self
-        
-        //Present the image picker
-        present(imagePicker, animated: true)
-    }
-}
+    } // End func showIncompleteAlert
 
-
-
-// MARK: - Image picker protocol functions
-extension AddRecipeViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        //Dismiss the image picker
-        dismiss(animated: true, completion: nil)
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        
-        //Get a reference to the selected photo
-        let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
-        
-        //Check that the selected image isn't nil
-        if let selectedImage = selectedImage {
-            
-            //Get a reference to the UploadPhotoButton
-            let uploadPhotoButton = UploadPhotoButton()
-            
-            //Upload it
-            uploadPhotoButton.savePhoto(image: selectedImage)
-        }
-        
-        //Dismiss the image picker
-        dismiss(animated: true, completion: nil)
-    }
 }
 
 // MARK: - UI Table View protocol functions
@@ -303,38 +206,6 @@ extension AddRecipeViewController: UITableViewDelegate, UITableViewDataSource {
                 tableView.reloadData()
                 
             }
-            
-            
-//            let ingredientsIndexPath = IndexPath(row: indexPath.row, section: 0)
-//            let seasoningsIndexPath = IndexPath(row: indexPath.row, section: 1)
-//            let instructionsIndexPath = IndexPath(row: indexPath.row, section: 2)
-            
-            //if indexPath.section == 0 {
-//                ingredients.remove(at: ingredientsIndexPath.row)
-//                tableView.beginUpdates()
-//                tableView.deleteRows(at: [ingredientsIndexPath], with: .automatic)
-//                tableView.endUpdates()
-        //}
-            
-//            if indexPath.section == 1 {
-//                ingredients.remove(at: seasoningsIndexPath.row)
-//                tableView.beginUpdates()
-//                tableView.deleteRows(at: [seasoningsIndexPath], with: .automatic)
-//                tableView.endUpdates()
-//
-//            }
-//
-//            if indexPath.section == 2 {
-//                ingredients.remove(at: instructionsIndexPath.row)
-//                tableView.beginUpdates()
-//                tableView.deleteRows(at: [instructionsIndexPath], with: .automatic)
-//                tableView.endUpdates()
-//
-//            }
-            
-            
-            
-            
         } // End if editingStyle
     } // End commit editingStyle
     

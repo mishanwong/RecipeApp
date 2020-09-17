@@ -139,8 +139,8 @@
 			children = (
 				E455E9A224F9A9740057AC78 /* Recipe.swift */,
 				E47C3F452510009B00E22E05 /* Section.swift */,
-				E4E0448D2502E7540098E213 /* PhotoService.swift */,
 				E4E0448B2502E6DF0098E213 /* Photo.swift */,
+				E4E0448D2502E7540098E213 /* PhotoService.swift */,
 				E455E9A424F9AD340057AC78 /* RecipesModel.swift */,
 			);
 			path = Models;

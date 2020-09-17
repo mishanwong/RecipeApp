@@ -11,8 +11,15 @@ import FirebaseFirestore
 import FirebaseStorage
 
 class PhotoService {
+    //This class is to handle all networking code to Firebase Storage
     
-    static func savePhotoToFirebase(image: UIImage) {
+    func savePhoto(image:UIImage, recipeId: String) {
+        
+        //Call the photo service to store the photo
+        PhotoService.savePhotoToFirebase(image: image, recipeId: recipeId)
+    }
+    
+    static func savePhotoToFirebase(image: UIImage, recipeId:String) {
         
         //Get the data representation of the UIImage
         let photoData = image.jpegData(compressionQuality: 0.1)
@@ -32,14 +39,15 @@ class PhotoService {
             
             //Check if the upload was successfull
             if error == nil {
+                
                 //Upon successful upload, create a metadata entry in the database
-                self.createDatabaseEntry(ref: ref)
+                self.createDatabaseEntry(ref: ref, recipeId: recipeId)
 
             } // End if
         } // End ref
     } // End func savePhoto
     
-    private static func createDatabaseEntry(ref: StorageReference) {
+    private static func createDatabaseEntry(ref: StorageReference, recipeId:String) {
         
         //Download url
         ref.downloadURL { (url, error) in
@@ -48,36 +56,38 @@ class PhotoService {
                 
                 let photoId = ref.fullPath
                 
-                //TODO: Get dishName
-                let dishName = "Dish Name Placeholder"
-                
-                //TODO: Get recipeId
-                let recipeId = "Recipe ID Placeholder"
-                
-                
-                //Create a dictionary of the photo metadata
-                let metadata = ["photoId":photoId, "recipeId":recipeId, "dishName":dishName, "url":url!.absoluteString]
-                
-                //Save the metadata to the Firestore database
+                //Get a reference to the database
                 let db = Firestore.firestore()
                 
-                db.collection("photos").addDocument(data: metadata) { (error) in
+                //Get recipeId
+                //let thisRecipe = db.collection("recipes").document() //This actually creates a new documentId. I want the recipeId already created
+                //let recipeId = thisRecipe.documentID
+                
+                //Trying a second approach
+                //Get a reference to the Recipe View Controller
+                //let recipeVC = RecipeViewController()
+                //let currentRecipe = recipeVC.recipe?.recipeId
+                //let recipeId = recipeVC.recipe?.recipeId // This is nil
+                
+                //print(recipeId! as String) // This does not work. This is nil
+            
+                //Create a dictionary of the photo metadata
+                let metadata = ["photoId":photoId, "recipeId":recipeId, "url":url!.absoluteString]
+                print(recipeId)
+                
+                //Save the metadata to the Firestore database
+                
+                db.collection("photos").addDocument(data: metadata as [String : Any]) { (error) in
                     
                     if error == nil {
                         //Successfully created database entries
-                        
-                        
-                    }
-                }
-                
-                
-            }
-            
-            
-        }
-            
-    }
+                                                
+                    } // End if error
+                } // End db.collection
+            } // End if error
+        } // End ref.downloadURL
+    } // End createDatabaseEntry
     
     
-    
+
 } //End class
