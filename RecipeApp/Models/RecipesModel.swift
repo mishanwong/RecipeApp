@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import FirebaseFirestore
+import Firebase
 
 //This stores all the codes to connect and query Firebase database
 
