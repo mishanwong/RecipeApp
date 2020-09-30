@@ -12,7 +12,7 @@ protocol PassData3 {
     func passDataBack3(data: [String])
 }
 
-class AddInstructionsViewController: UIViewController {
+class AddInstructionsViewController: UIViewController, UITextFieldDelegate {
     
     var instructions = [String]()
     var delegate:PassData3?
@@ -28,9 +28,13 @@ class AddInstructionsViewController: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
+        addInstructionsTextField.delegate = self
 
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        return addInstructionsTextField.resignFirstResponder()
+    }
 
     @IBAction func addButtonTapped(_ sender: Any) {
         

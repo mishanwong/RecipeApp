@@ -33,6 +33,7 @@ class RecipesModel {
             //Check for errors
             if error == nil && snapshot != nil {
                 
+                
                 var recipes = [Recipe]()
                 
                 //Parse the documents into recipes
@@ -40,9 +41,24 @@ class RecipesModel {
                 for doc in snapshot!.documents {
                     
                     //TODO: Convert url from String type to UIImage type
-                    let r = Recipe(recipeId: doc["recipeId"] as! String, dishName: doc["dishName"] as! String, ingredients: doc["ingredients"] as! Array, seasonings: doc["seasonings"] as! Array, instructions: doc["instructions"] as! Array, urlString: doc["urlString"] as? String)
                     
-                    recipes.append(r)
+                    //Debugging
+//                    print(doc["recipeId"] as Any)
+//                    print(doc["dishName"] as Any)
+//                    print(doc["ingredients"] as Any)
+//                    print(doc["seasonings"] as Any)
+//                    print(doc["instructions"] as Any)
+//                    print(doc["urlString"] as Any)
+                    
+                    if doc["recipeId"] != nil {
+                        
+                        let r = Recipe(recipeId: doc["recipeId"] as! String, dishName: doc["dishName"] as! String, ingredients: doc["ingredients"] as! Array, seasonings: doc["seasonings"] as! Array, instructions: doc["instructions"] as! Array, urlString: doc["urlString"] as? String)
+                        
+                        recipes.append(r)
+                        
+                    }
+                    
+                    
                 }
                 
                 //Call the delegate and pass back the notes - this is why we set ViewController as the delegate for the RecipesModel
@@ -55,16 +71,10 @@ class RecipesModel {
         } // End db.collection
     } // End func getRecipes()
     
-    func saveRecipes() {
-        
-        //Get a reference to the database
-        //let db = Firestore.firestore()
-        
-        //Save the recipe
-        //let newRecipe = db.collection("recipes").document()
-        
-        
-    }
+//    func saveRecipes() {
+//
+//
+//    }
     
     
     

@@ -10,9 +10,11 @@ import Foundation
 import Firebase
 import FirebaseStorage
 
+//This class is to handle all networking code to Firebase Storage
+
 class PhotoService {
-    //This class is to handle all networking code to Firebase Storage
     
+    //Retrieve all photos from Firebase
     static func retrievePhotos(completion: @escaping ([Photo]) -> Void) {
         
         //Get a database reference
@@ -67,14 +69,6 @@ class PhotoService {
             
             //Check for erros and data
             if error == nil && data != nil {
-                
-                //Set the image view
-//                let image = UIImage(data: data!)
-//
-//                DispatchQueue.main.async {
-//
-//                    dishImageView.image = image
-//                }
                 completion(data!)
             } // End if error
         } // end let dataTask
@@ -134,9 +128,12 @@ class PhotoService {
                 //Create a dictionary of the photo metadata
                 let metadata = ["photoId":photoId, "recipeId":recipeId, "urlString":url!.absoluteString]
                                 
-        
-                //Save the metadata to the Firestore database
+                //Save the metadata to the Firestore "photos" collection
                 db.collection("photos").document(recipeId).setData(metadata)
+                print(url?.absoluteString as Any)
+                
+                //Save the photo URL to "recipes" collection
+                db.collection("recipes").document(recipeId).updateData(["urlString":url!.absoluteString])
                 
             } // End if error
         } // End ref.downloadURL

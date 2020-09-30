@@ -12,7 +12,7 @@ protocol PassData2 {
     func passDataBack2(data: [String])
 }
 
-class AddSeasoningsViewController: UIViewController {
+class AddSeasoningsViewController: UIViewController, UITextFieldDelegate {
     
     var seasonings = [String]()
     var delegate:PassData2?
@@ -26,9 +26,13 @@ class AddSeasoningsViewController: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
+        addSeasoningsTextField.delegate = self
 
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        return addSeasoningsTextField.resignFirstResponder()
+    }
 
     @IBAction func addButtonTapped(_ sender: Any) {
         

@@ -61,57 +61,54 @@ class RecipeViewController: UIViewController {
                 
             }
             
-            //Display Dish Photo
-            //Call the PhotoService to retrieve the photos
             
-            if recipe?.recipeId != nil { //recipeId is not nil
-            
-                
-                //retrievedPhotos is type [Photo]
-                
-                PhotoService.retrievePhotos { [self] (retrievedPhotos) in
-                    
-                    self.photos = retrievedPhotos
-                    let thisRecipeId = recipe?.recipeId
-                    
-                    for i in 0...(retrievedPhotos.count - 1) {
-                        
-                        if retrievedPhotos[i].recipeId == thisRecipeId {
-                            
-                            let photoIndex = i
-                            
-                            //Setting the display photo
-                            self.photo = photos[photoIndex]
-                            
-                            break
-                            
-                        }
-                        
-                    }
-                    
-                    
-                    //photo?.recipeId = thisRecipeId
-                                        
-                    if self.photo != nil {
-                        PhotoService.displayPhoto(photo: photo!) { (data) in
-                            
-                            //Set the image view
-                            let image = UIImage(data: data)
-                            
-                            DispatchQueue.main.async {
-                                
-                                dishImageView.image = image
-                            }
-                        }
-                        
-                    }
-                }
-                
-            } // End if recipe?.recipeId
-        
         } // End if recipe
-        
     } // End ViewDidLoad
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        //Display Dish Photo
+        //Call the PhotoService to retrieve the photos
+        if recipe?.recipeId != nil { //recipeId is not nil
+        
+            PhotoService.retrievePhotos { [self] (retrievedPhotos) in
+                
+                self.photos = retrievedPhotos
+                let thisRecipeId = recipe?.recipeId
+                
+                for i in 0...(retrievedPhotos.count - 1) {
+                    
+                    if retrievedPhotos[i].recipeId == thisRecipeId {
+                        
+                        let photoIndex = i
+                        
+                        //Setting the display photo
+                        self.photo = photos[photoIndex]
+                        
+                        break
+                        
+                    } //End if retrievedPhotos
+                } // End for i in 0
+                
+                if self.photo != nil {
+                    PhotoService.displayPhoto(photo: photo!) { (data) in
+                        
+                        //Set the image view
+                        let image = UIImage(data: data)
+                        
+                        DispatchQueue.main.async {
+                            
+                            dishImageView.image = image
+                        } // End DispatchQueue
+                    } //End PhotoService.displayPhoto
+                } // End if self.photo
+            } // End PhotoService.retrievePhotos
+        } // End if recipe?.recipeId
+    } //End viewWillAppear
+    
+    
+    
     
 
     @IBAction func cameraTapped(_ sender: Any) {

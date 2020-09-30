@@ -34,11 +34,9 @@ class RecipeCell: UITableViewCell {
         
         //Create url string
         let urlString = recipeToDisplay!.urlString!
-        print(urlString)
         
         //Create the URL object
         let url = URL(string: urlString)
-        print(url)
         
         //Check that the url isn't nil
         guard url != nil else {

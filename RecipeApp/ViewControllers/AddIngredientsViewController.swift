@@ -12,7 +12,7 @@ protocol PassData {
     func passDataBack(data: [String])
 }
 
-class AddIngredientsViewController: UIViewController {
+class AddIngredientsViewController: UIViewController, UITextFieldDelegate {
         
     var ingredients = [String]()
     var delegate:PassData?
@@ -26,7 +26,13 @@ class AddIngredientsViewController: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+        addIngredientsTextField.delegate = self
 
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        return addIngredientsTextField.resignFirstResponder()
     }
     
     @IBAction func saveTapped(_ sender: Any) {

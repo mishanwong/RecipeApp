@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class AddRecipeViewController: UIViewController {
+class AddRecipeViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var dishNameTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
@@ -32,8 +32,18 @@ class AddRecipeViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        dishNameTextField.delegate = self
+        self.dishNameTextField.delegate = self
                 
+    }
+    
+    // Hide keyboard on touch
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    //Hide keyboard on return key
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        return dishNameTextField.resignFirstResponder()
     }
     
     // MARK: - Prepare for storyboard segue
@@ -83,7 +93,8 @@ class AddRecipeViewController: UIViewController {
                                "dishName": dishNameTextField.text ?? "",
                                "ingredients": ingredients,
                                "seasonings": seasonings,
-                               "instructions": instructions])
+                               "instructions": instructions,
+                              "urlString":"tbd"])
             
             //Return to Add Recipe View Controller
             navigationController?.popViewController(animated: true)
@@ -246,17 +257,4 @@ extension AddRecipeViewController: PassData3 {
     
 }
 
-extension AddRecipeViewController: UITextFieldDelegate {
-    
-    // Hide keyboard on touch
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
-    }
-    
-    //Hide keyboard on return key
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        dishNameTextField.resignFirstResponder()
-        return (true)
-    }
-}
 
