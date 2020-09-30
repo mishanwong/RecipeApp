@@ -20,6 +20,7 @@
 		E455E9A724F9AD880057AC78 /* RecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E455E9A624F9AD880057AC78 /* RecipeViewController.swift */; };
 		E455E9A924FEE0180057AC78 /* AddRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E455E9A824FEE0180057AC78 /* AddRecipeViewController.swift */; };
 		E47C3F462510009B00E22E05 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47C3F452510009B00E22E05 /* Section.swift */; };
+		E4A0A8E5251E9DD700CA8399 /* RecipeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A0A8E4251E9DD700CA8399 /* RecipeCell.swift */; };
 		E4E0448825002F4A0098E213 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4E0448725002F4A0098E213 /* Assets.xcassets */; };
 		E4E0448C2502E6DF0098E213 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E0448B2502E6DF0098E213 /* Photo.swift */; };
 		E4E0448E2502E7540098E213 /* PhotoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E0448D2502E7540098E213 /* PhotoService.swift */; };
@@ -46,6 +47,7 @@
 		E455E9A624F9AD880057AC78 /* RecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewController.swift; sourceTree = "<group>"; };
 		E455E9A824FEE0180057AC78 /* AddRecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecipeViewController.swift; sourceTree = "<group>"; };
 		E47C3F452510009B00E22E05 /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
+		E4A0A8E4251E9DD700CA8399 /* RecipeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCell.swift; sourceTree = "<group>"; };
 		E4E0448725002F4A0098E213 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E4E0448B2502E6DF0098E213 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		E4E0448D2502E7540098E213 /* PhotoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoService.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				E4E0448725002F4A0098E213 /* Assets.xcassets */,
 				E455E9A024F9A7430057AC78 /* GoogleService-Info.plist */,
 				E455E99A24F9A4D40057AC78 /* Info.plist */,
+				E4A0A8E4251E9DD700CA8399 /* RecipeCell.swift */,
 			);
 			path = RecipeApp;
 			sourceTree = "<group>";
@@ -162,7 +165,7 @@
 				E455E98524F9A4D00057AC78 /* Sources */,
 				E455E98624F9A4D00057AC78 /* Frameworks */,
 				E455E98724F9A4D00057AC78 /* Resources */,
-				BC3B2E79C83737CC972B57E3 /* [CP] Embed Pods Frameworks */,
+				7FC0D7B6E70CF0CEFBBA68E2 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -180,7 +183,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1160;
-				LastUpgradeCheck = 1160;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Mishan Wong";
 				TargetAttributes = {
 					E455E98824F9A4D00057AC78 = {
@@ -221,6 +224,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		7FC0D7B6E70CF0CEFBBA68E2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RecipeApp/Pods-RecipeApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RecipeApp/Pods-RecipeApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RecipeApp/Pods-RecipeApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		8C037C0F74DAB72CD078F95A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -243,23 +263,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		BC3B2E79C83737CC972B57E3 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RecipeApp/Pods-RecipeApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RecipeApp/Pods-RecipeApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RecipeApp/Pods-RecipeApp-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -267,6 +270,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4A0A8E5251E9DD700CA8399 /* RecipeCell.swift in Sources */,
 				E47C3F462510009B00E22E05 /* Section.swift in Sources */,
 				E4E0448C2502E6DF0098E213 /* Photo.swift in Sources */,
 				E455E99124F9A4D00057AC78 /* ViewController.swift in Sources */,
@@ -332,6 +336,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -392,6 +397,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;

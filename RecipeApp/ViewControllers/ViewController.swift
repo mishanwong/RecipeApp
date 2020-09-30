@@ -12,8 +12,12 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var dishImage: UIImageView!
+    
     private var recipesModel = RecipesModel()
     private var recipes:[Recipe] = [Recipe]()
+    var photos = [Photo]()
+    var photo:Photo?
     
     
     
@@ -22,11 +26,7 @@ class ViewController: UIViewController {
         
         navigationController?.navigationBar.prefersLargeTitles = true
         title = "Recipe List"
-        
-        //Set up a search view controller -- now this is just a dummy
-        let searchController = UISearchController(searchResultsController: nil)
-        navigationItem.searchController = searchController
-        navigationItem.hidesSearchBarWhenScrolling = false
+    
         
         //Set delegate and datasource for the table
         tableView.delegate = self
@@ -35,9 +35,10 @@ class ViewController: UIViewController {
         //Set self as the delegate for the notes model
         recipesModel.delegate = self
                 
-        //Retrieve all notes
+        //Retrieve all recipes
         recipesModel.getRecipes()
-
+        
+        
     }
     
     
@@ -81,13 +82,17 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         //Get a cell
-        let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeCell", for: indexPath) as! RecipeCell
+        
+        //Get the recipe that the tableview is asking for
+        let recipe = recipes[indexPath.row]
         
         //TODO: Customize cell
-        //let imageLabel = cell.viewWithTag(2) as? UIImageView
+        cell.displayRecipe(recipe)
         
-        let dishNameLabel = cell.viewWithTag(1) as? UILabel
-        dishNameLabel?.text = recipes[indexPath.row].dishName
+        
+//        let dishNameLabel = cell.viewWithTag(1) as? UILabel
+//        dishNameLabel?.text = recipes[indexPath.row].dishName
         
         //Return the cell
         return cell

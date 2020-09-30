@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import FirebaseStorage
+import Firebase
+
 
 class RecipeViewController: UIViewController {
     
@@ -18,7 +21,8 @@ class RecipeViewController: UIViewController {
     
     var recipe:Recipe?
     var recipesModel:RecipesModel?
-    var thisRecipeId:String?
+    var photo:Photo?
+    var photos = [Photo]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,12 +59,58 @@ class RecipeViewController: UIViewController {
             for i in 0...(instructionsArray!.count - 1) {
                 instructionsTextView.text += "\(i+1). " + instructionsArray![i] + "\n"
                 
-            } // End let
+            }
             
-
+            //Display Dish Photo
+            //Call the PhotoService to retrieve the photos
+            
+            if recipe?.recipeId != nil { //recipeId is not nil
+            
+                
+                //retrievedPhotos is type [Photo]
+                
+                PhotoService.retrievePhotos { [self] (retrievedPhotos) in
+                    
+                    self.photos = retrievedPhotos
+                    let thisRecipeId = recipe?.recipeId
+                    
+                    for i in 0...(retrievedPhotos.count - 1) {
+                        
+                        if retrievedPhotos[i].recipeId == thisRecipeId {
+                            
+                            let photoIndex = i
+                            
+                            //Setting the display photo
+                            self.photo = photos[photoIndex]
+                            
+                            break
+                            
+                        }
+                        
+                    }
+                    
+                    
+                    //photo?.recipeId = thisRecipeId
+                                        
+                    if self.photo != nil {
+                        PhotoService.displayPhoto(photo: photo!) { (data) in
+                            
+                            //Set the image view
+                            let image = UIImage(data: data)
+                            
+                            DispatchQueue.main.async {
+                                
+                                dishImageView.image = image
+                            }
+                        }
+                        
+                    }
+                }
+                
+            } // End if recipe?.recipeId
+        
         } // End if recipe
         
-
     } // End ViewDidLoad
     
 
@@ -107,12 +157,6 @@ class RecipeViewController: UIViewController {
         
         //Display the action sheet
         present(actionSheet, animated: true)
-        
-    //Try to access recipeId here
-        //print(recipe!.recipeId as String) //This also works. Successfully retrived current recipeId
-        
-        
-        
 
     } // End cameraTapped
     
@@ -154,11 +198,13 @@ extension RecipeViewController: UIImagePickerControllerDelegate, UINavigationCon
             
             //Upload it
             photoService.savePhoto(image: selectedImage, recipeId: selectedRecipeId)
-            //print(recipe!.recipeId as String) // This also works. Can retrieve recipeId
+                    
             
         } // End if
         
         //Dismiss the image picker
         dismiss(animated: true, completion: nil)
+        
     } // End imagePicker Controller
+    
 }

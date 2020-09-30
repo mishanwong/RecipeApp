@@ -31,6 +31,8 @@ class AddRecipeViewController: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+        dishNameTextField.delegate = self
                 
     }
     
@@ -242,5 +244,19 @@ extension AddRecipeViewController: PassData3 {
     }
     
     
+}
+
+extension AddRecipeViewController: UITextFieldDelegate {
+    
+    // Hide keyboard on touch
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    //Hide keyboard on return key
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        dishNameTextField.resignFirstResponder()
+        return (true)
+    }
 }
 

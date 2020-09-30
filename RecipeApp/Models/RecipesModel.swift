@@ -29,7 +29,7 @@ class RecipesModel {
         //Get all the recipes
         
         db.collection("recipes").addSnapshotListener { (snapshot, error) in
-            
+                        
             //Check for errors
             if error == nil && snapshot != nil {
                 
@@ -40,7 +40,7 @@ class RecipesModel {
                 for doc in snapshot!.documents {
                     
                     //TODO: Convert url from String type to UIImage type
-                    let r = Recipe(recipeId: doc["recipeId"] as! String, dishName: doc["dishName"] as! String, ingredients: doc["ingredients"] as! Array, seasonings: doc["seasonings"] as! Array, instructions: doc["instructions"] as! Array, url: doc["url"] as? String)
+                    let r = Recipe(recipeId: doc["recipeId"] as! String, dishName: doc["dishName"] as! String, ingredients: doc["ingredients"] as! Array, seasonings: doc["seasonings"] as! Array, instructions: doc["instructions"] as! Array, urlString: doc["urlString"] as? String)
                     
                     recipes.append(r)
                 }

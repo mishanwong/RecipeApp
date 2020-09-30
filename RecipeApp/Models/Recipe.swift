@@ -16,7 +16,7 @@ struct Recipe {
     var ingredients = [String]() //Create an empty array of String
     var seasonings = [String]()
     var instructions = [String]()
-    var url:String?
+    var urlString:String?
 
 }
 
