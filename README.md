@@ -1,7 +1,7 @@
 # RecipeApp
 
 ## Description
-This app allows you to save your self-created cooking recipes. In this app, you can:
+This iOS app allows you to save your self-created cooking recipes. In this app, you can:
 - Add recipe name
 - Add a list of ingredients
 - Add a list of seasonings
