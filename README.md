@@ -7,6 +7,8 @@ This app allows you to save your self-created cooking recipes. In this app, you 
 - Add a list of seasonings
 - Add a list of instructions
 - Add a photo
+- View a list of all added recipes
+- View detailed recipe ingredients, seasonings, instructions and a photo
 
 ## Screenshots 
 ### Main view
